@@ -1,0 +1,12 @@
+library(rgee)
+
+# Set your Python ENV
+Sys.setenv("RETICULATE_PYTHON" = "/usr/bin/python3")
+
+# Set Google Cloud SDK. Only need it the first time you log in. 
+Sys.setenv("EARTHENGINE_GCLOUD" = "home/csaybar/google-cloud-sdk/bin/")
+ee_Authenticate()
+
+# Init your Earth Session  
+
+ee_Initialize()

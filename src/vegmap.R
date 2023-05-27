@@ -19,4 +19,8 @@ st_is_valid(veg_china_valid)
 veg_suli <- st_intersection(veg_china_valid,suli)
 road_suli <- st_intersection(road,suli)
 
-ggplot() + layer_spatial(veg_suli,aes(fill=zbx)) + labs(fill = "Landcover") + layer_spatial(road_suli) + theme_bw()
+ggplot() + layer_spatial(veg_suli,aes(fill=zbxz)) + labs(fill = "Landcover") + layer_spatial(road_suli) + theme_bw()
+ggsave("maps/vegemap-landcover.pdf", width = 6, height = 4, dpi = 600)
+
+ggplot() + layer_spatial(veg_suli,aes(fill=qx)) + labs(fill = "Vegetation") + layer_spatial(road_suli) + theme_bw()
+ggsave("maps/vegemap-vegetation.pdf", width = 6, height = 4, dpi = 600)
