@@ -1,1 +1,2 @@
 # UAV-LULC
+## Vegetation map was downloaded from [An updated Vegetation Map of China (1:1000000)](https://www.sciencedirect.com/science/article/pii/S2095927320302152), and was cropped to the extent of study area.
