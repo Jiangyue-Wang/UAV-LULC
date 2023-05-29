@@ -28,5 +28,5 @@ for(i in 1:length(filelist)){
 ## fail fail fail fuck I downloaded by hand
 
 ### save download monthly file directory
-downloadedlist <- data.frame(month = rep(1:12,each=6),filedir = paste0("cloudfree-10year-composite/Month",rep(str_pad(1:12, width = 2, side = "left", pad = "0"),each = 6),"/","myExportImageTask-00000",rep(c("00000","06912"), each = 36),"-00000",rep(c("00000","06912","13824"),24),".tif"))
+downloadedlist <- data.frame(month = rep(1:12,each=6),filedir = paste0("cloudfree-10year-composite/Month",rep(str_pad(1:12, width = 2, side = "left", pad = "0"),each = 6),"/","myExportImageTask-00000",rep(c("00000","06912"),36),"-00000",rep(c("00000","06912","13824"),24),".tif"))
 write_rds(downloadedlist, "intermediate_rds/cloudfree-10year-composite_filelist.rds")
