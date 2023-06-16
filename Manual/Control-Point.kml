@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Control-Point.kml</name>
+	<StyleMap id="m_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0affff</color>
+			<width>3</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff0affff</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ff0affff</color>
+			<width>3</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>ff0affff</color>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Placemark>
+		<name>CP1</name>
+		<snippet></snippet>
+		<Camera>
+			<gx:TimeSpan>
+				<begin>2023-05-24T06:23:35Z</begin>
+				<end>2023-05-24T13:08:45Z</end>
+			</gx:TimeSpan>
+			<longitude>98.36148035553261</longitude>
+			<latitude>38.17547593763894</latitude>
+			<altitude>16672.90175552681</altitude>
+			<heading>-1.474142097694602</heading>
+			<tilt>8.757786876665975</tilt>
+			<roll>-1.482942251671932</roll>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</Camera>
+		<styleUrl>#m_ylw-pushpin</styleUrl>
+		<MultiGeometry>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>98.35460376043154,38.17684888147902,0</coordinates>
+			</Point>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>98.27150943901373,38.33455529824001,0</coordinates>
+			</Point>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>98.27491970568482,38.52679431014569,0</coordinates>
+			</Point>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>98.02743972975628,38.70270929746255,0</coordinates>
+			</Point>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>97.82695827608464,38.81999802140709,0</coordinates>
+			</Point>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>97.62068998772732,38.92817951623892,0</coordinates>
+			</Point>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>97.72247136119202,38.8376428687181,0</coordinates>
+			</Point>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>97.83637746279443,38.76358241575583,0</coordinates>
+			</Point>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>97.46649546706465,38.78349841770071,0</coordinates>
+			</Point>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>97.27049348642875,38.8559500065418,0</coordinates>
+			</Point>
+		</MultiGeometry>
+	</Placemark>
+</Document>
+</kml>

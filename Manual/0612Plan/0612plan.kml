@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>0612plan</name>
+  <Placemark>
+	<name>Pol1</name>
+	<description>Thorn-bare-grassland</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.5931528467285,38.8197670137603 97.5837719522795,38.8330090543156 97.5554699414822,38.8279854902677 97.5579564288144,38.8074303560556 97.5931528467285,38.8197670137603</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Pol2</name>
+	<description>bare-grass</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.5102196782661,38.7909916632384 97.4890024636384,38.8085470388583 97.4742339918835,38.8037458585323 97.5029867285622,38.7757611544411 97.5102196782661,38.7909916632384</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Pol3</name>
+	<description>bare-thorn</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.4449576224635,38.7133279165367 97.4338085264125,38.7271080622255 97.4073215660362,38.715063598177 97.4132063494163,38.7071605407869 97.4449576224635,38.7133279165367</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Pol4</name>
+	<description>bare-grass</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.2889130758037,38.8640115684925 97.2639648626762,38.8727014984544 97.2558862921649,38.8631963014804 97.287834975896,38.8530871775466 97.2889130758037,38.8640115684925</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Pol5</name>
+	<description>thorn-grass</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.4277050088198,38.7993433772581 97.4096896107789,38.806947215808 97.4009978358634,38.7934495814094 97.4219182319309,38.7846376016245 97.4277050088198,38.7993433772581</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

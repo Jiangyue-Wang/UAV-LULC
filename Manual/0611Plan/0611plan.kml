@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>0611plan</name>
+  <Placemark>
+	<name>Pol1</name>
+	<description>shrub-grass-bare</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.6356020511149,38.950051027044 97.6448789312297,38.9477076485059 97.6479435960619,38.9594986335947 97.6359761050214,38.9641115699475 97.6356020511149,38.950051027044</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Pol2</name>
+	<description>thorn-grass-bare</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.6683938795616,38.9412031609857 97.6773398387442,38.9378072190207 97.6814306928077,38.9444483708289 97.6696417691221,38.9501027846145 97.6683938795616,38.9412031609857</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Pol3</name>
+	<description>Inner grass-shrub</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.7009231003726,38.9149003675086 97.7137338035479,38.9108774839566 97.7166662253854,38.923850702937 97.7037237905183,38.9295558334645 97.7009231003726,38.9149003675086</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Pol4</name>
+	<description>river bank-thorn</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.7939779497148,38.8903391977549 97.8058021736558,38.8832718389485 97.813808850685,38.8971538255758 97.7991903556947,38.9010191505274 97.7939779497148,38.8903391977549</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Pol5</name>
+	<description>Thorn-grass-shrub-bare</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.7890406090856,38.8073969297768 97.7960175714116,38.8037751291762 97.7997441336507,38.8112625018757 97.7932890804918,38.8161153016284 97.7890406090856,38.8073969297768</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Pol6</name>
+	<description>grass-bare</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.730193615101,38.80552564333 97.7407917930224,38.8041488786703 97.7459574593642,38.8167315482181 97.729591413142,38.8209968841499 97.730193615101,38.80552564333</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Pol7</name>
+	<description>thorn-grass-shrub</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.6900374411109,38.8271774770008 97.7046281933673,38.8248682079024 97.7107819741442,38.8368064440569 97.691350790334,38.834254782675 97.6900374411109,38.8271774770008</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<name>Pol8</name>
+	<description>grass-thorn-bare</description>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>97.7286614842628,38.8621305340195 97.7287154341028,38.8558593972061 97.7320364317492,38.8555285832213 97.7340039982397,38.8612831068377 97.7286614842628,38.8621305340195</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>
