@@ -22,3 +22,15 @@ alos_dem_proj <- terra::project(alos_dem, suli)
 suli_dem <- terra::mask(alos_dem_proj, suli)
 plot(suli_dem)
 writeRaster(suli_dem, "downloaded-datasets/DEM/suli_dem.tif")
+
+
+### calculate slope, aspect, TRI and TPI
+suli_slope <- terra::terrain(suli_dem,v="slope", neighbors=8, unit="degrees")
+suli_aspect <- terra::terrain(suli_dem,v="aspect", neighbors=8, unit="degrees")
+suli_TRI <- terra::terrain(suli_dem,v="TRI", neighbors=8)
+suli_TPI <- terra::terrain(suli_dem,v="TPI", neighbors=8)
+
+writeRaster(suli_slope, "downloaded-datasets/DEM/suli_slope.tif")
+writeRaster(suli_aspect, "downloaded-datasets/DEM/suli_aspect.tif")
+writeRaster(suli_TRI, "downloaded-datasets/DEM/suli_TRI.tif")
+writeRaster(suli_TPI, "downloaded-datasets/DEM/suli_TPI.tif")
