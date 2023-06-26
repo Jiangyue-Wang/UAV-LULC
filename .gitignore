@@ -11,3 +11,5 @@ maps/Feb_satellite.tif
 maps/Aug_satellite.tif
 UAV-LULC.gdb/
 UAV-images/
+downloaded-datasets/ALOS_dem/
+downloaded-datasets/DEM/

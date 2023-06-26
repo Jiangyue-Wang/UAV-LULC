@@ -104,4 +104,4 @@ NDVI_diff <- MONTH8_NDVI-MONTH2_NDVI
 plot(NDVI_diff)
 values(NDVI_diff) <- as.numeric(factor(NDVI_habitat(values(NDVI_diff)), levels = c("bare", "low", "high")))
 plot(NDVI_diff)
-writeRaster(NDVI_diff, "maps/NDVI-defined_habitat.tif")
+# writeRaster(NDVI_diff, "maps/NDVI-defined_habitat.tif")
