@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="zh"><Esri><CreaDate>20230627</CreaDate><CreaTime>15484500</CreaTime><ArcGISFormat>1.0</ArcGISFormat><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="c:\program files (x86)\arcgis\desktop10.8\ArcToolbox\Toolboxes\Spatial Analyst Tools.tbx\StreamToFeature" Date="20230627" Time="154706">StreamToFeature suli_stream suli_fill_flowdir E:\Jiangyue\UAV-LULC\UAV-LULC.gdb\suli_streamline NO_SIMPLIFY</Process></lineage></DataProperties></Esri></metadata>
