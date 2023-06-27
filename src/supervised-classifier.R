@@ -1,25 +1,37 @@
 # load library
 library(tidyverse)
 library(sf)
-library(ggmap)
 library(rpart)
 library(dismo)
+library(terra)
 # read data
 field_data <- st_read("field-data/field-data-bands.shp")
 head(field_data)
 sampdata <- field_data %>% as.data.frame() %>% dplyr::select(-geometry)%>% dplyr::select(Subject, B1, B2, B3, B4, B5, B6, B7, B8,B8A, B9, B11, B12)  
 
+dem <- rast("downloaded-datasets/DEM/suli_dem.tif")
+slope <- rast("downloaded-datasets/DEM/suli_slope.tif")
+aspect <- rast("downloaded-datasets/DEM/suli_aspect.tif")
+TPI <- rast("downloaded-datasets/DEM/suli_TPI.tif")
+TRI <- rast("downloaded-datasets/DEM/suli_TRI.tif")
+
+stream <- st_read("downloaded-datasets/Stream/suli_stream.shp") %>% st_union()
+
+sampdata %<>% mutate(elevation = extract(dem, field_data)[,2], slope = extract(slope, field_data)[,2], aspect = extract(aspect, field_data)[,2], TPI = extract(TPI, field_data)[,2], TRI = extract(TRI, field_data)[,2]) %>% mutate(river_dist = st_distance(field_data, stream))
+
+# write_rds(sampdata, "intermediate_rds/sampdata.rds")
+
 ### using classification tree----------
 cart <- rpart(as.factor(Subject)~., data=sampdata, method = 'class')
-quartz()
+windows()
 plot(cart, uniform=TRUE, main="Classification Tree")
 text(cart, cex = 0.8)
 
 set.seed(99)
-j <- kfold(sampdata, k = 3, b=sampdata$Subject)
+j <- kfold(sampdata, k = 5, b=sampdata$Subject)
 table(j)
 x <- list()
-for (k in 1:3) {
+for (k in 1:5) {
   train <- sampdata[j!= k, ]
   test <- sampdata[j == k, ]
   cart <- rpart(as.factor(Subject)~., data=train, method = 'class')
@@ -56,3 +68,4 @@ kappa
 
 
 ### random forest--------
+
