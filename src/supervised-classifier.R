@@ -8,7 +8,9 @@ library(caret)
 library(randomForest)
 library(parallel)
 library(doParallel)
-library()
+library(MLmetrics)
+library(nnet)
+library(neuralnet)
 #read data
 field_data <- st_read("field-data/field-data-bands.shp")
 head(field_data)
@@ -72,32 +74,101 @@ kappa <- (OA - expAccuracy) / (1 - expAccuracy)
 kappa
 
 
-### random forest--------
+### other ML models--------
 set.seed(321)
 # A stratified random split of the data
 idx_train <- createDataPartition(sampdata$Subject,
-                                 p = 0.7, # percentage of data as training
+                                 p = 0.8, 
                                  list = FALSE)
 dt_train <- sampdata[idx_train,]
 dt_test <- sampdata[-idx_train,]
 
 n_folds <- 5
-folds <- createFolds(1:nrow(dt_train), k = n_folds)
-seeds <- vector(mode = "list", length = n_folds+1)
-for(i in 1:n_folds) {
-  seeds[[i]] <- sample.int(1000, n_folds)
-}
-seeds[n_folds+1] <- sample.int(1000,1)
 
-ctrl <- trainControl(summaryFunction = multiClassSummary, method = "cv", number = n_folds, search = "grid", classProbs = T, savePredictions = T, index = folds, seeds = seeds)
+TrainingParameters<- trainControl(method = "repeatedcv", number = n_folds, repeats = n_folds)
 
-cl <- makeCluster(detectCores()-4)
-registerDoParallel(cl)
+## support vector machine
+model_SVM <- train(Subject ~ ., data = dt_train, method = "svmPoly", trControl = TrainingParameters, preProcess = c("scale","center"), na.action = na.omit)
 
-model_rf <- caret::train(Subject~., method = "rf", data = dt_train, allowParallel = T, trControl= ctrl)
+cm_SVM <- confusionMatrix(predict(model_SVM, dt_test), as.factor(dt_test$Subject))
+cm_SVM
 
-stopCluster(cl); remove(cl)
-registerDoSEQ()
+## random forest
+model_rf <- caret::train(Subject ~ ., method = "rf", data = dt_train,  preProcess = c("scale", "center"),trControl= TrainingParameters, na.action = na.omit)
 
 cm_rf <- confusionMatrix(data = predict(model_rf, newdata = dt_test), as.factor(dt_test$Subject))
 cm_rf
+
+## decision tree
+model_decTree <- caret::train(Subject ~ ., method = "C5.0", data = dt_train,  preProcess = c("scale", "center"),trControl= TrainingParameters, na.action = na.omit)
+
+cm_decTree <- confusionMatrix(data = predict(model_decTree, newdata = dt_test), as.factor(dt_test$Subject))
+cm_decTree
+
+## naive Bayes
+model_nb <- caret::train(Subject ~ ., method = "nb", data = dt_train,  preProcess = c("scale", "center"),trControl= TrainingParameters, na.action = na.omit)
+
+cm_nb <- confusionMatrix(data = predict(model_nb, newdata = dt_test), as.factor(dt_test$Subject))
+cm_nb
+
+## artificial neural network
+model_nnet <- caret::train(Subject ~ ., method = "nnet", data = dt_train, preProcess = c("scale", "center"), trControl= ctrl)
+
+
+cm_nnet <- confusionMatrix(data = predict(model_nnet, newdata = dt_train), as.factor(dt_train$Subject))
+cm_nnet
+
+modelPerformance <- data.frame(model = c("SVM", "RF", "NB", "NN","decTree"), Accuracy = c(cm_SVM$overall[1],cm_rf$overall[1],cm_nb$overall[1],cm_nnet$overall[1], cm_decTree$overall[1]))
+
+### test if training data is enough
+modelPerformance <- NULL
+
+for(i in seq(0.1,0.99,0.1)){
+  print(i)
+  set.seed(321)
+  # A stratified random split of the data
+  idx_train <- createDataPartition(sampdata$Subject,
+                                   p = i, 
+                                   list = FALSE)
+  dt_train <- sampdata[idx_train,]
+  dt_test <- sampdata[-idx_train,]
+  
+  n_folds <- 5
+  
+  TrainingParameters<- trainControl(method = "repeatedcv", number = n_folds, repeats = n_folds)
+  
+  ## support vector machine
+  model_SVM <- train(Subject ~ ., data = dt_train, method = "svmPoly", trControl = TrainingParameters, preProcess = c("scale","center"), na.action = na.omit)
+  
+  cm_SVM <- confusionMatrix(predict(model_SVM, dt_test), as.factor(dt_test$Subject))
+  
+  ## random forest
+  model_rf <- caret::train(Subject ~ ., method = "rf", data = dt_train,  preProcess = c("scale", "center"),trControl= TrainingParameters, na.action = na.omit)
+  
+  cm_rf <- confusionMatrix(data = predict(model_rf, newdata = dt_test), as.factor(dt_test$Subject))
+  
+  ## decision tree
+  model_decTree <- caret::train(Subject ~ ., method = "C5.0", data = dt_train,  preProcess = c("scale", "center"),trControl= TrainingParameters, na.action = na.omit)
+  
+  cm_decTree <- confusionMatrix(data = predict(model_decTree, newdata = dt_test), as.factor(dt_test$Subject))
+
+  ## naive Bayes
+  model_nb <- caret::train(Subject ~ ., method = "nb", data = dt_train,  preProcess = c("scale", "center"),trControl= TrainingParameters, na.action = na.omit)
+  
+  cm_nb <- confusionMatrix(data = predict(model_nb, newdata = dt_test), as.factor(dt_test$Subject))
+
+  
+  ## artificial neural network
+  model_nnet <- caret::train(Subject ~ ., method = "nnet", data = dt_train, preProcess = c("scale", "center"), trControl= TrainingParameters)
+  
+  
+  cm_nnet <- confusionMatrix(data = predict(model_nnet, newdata = dt_train), as.factor(dt_train$Subject))
+
+  tmp <- data.frame(model = c("SVM", "RF", "NB", "NN","decTree"), Accuracy = c(cm_SVM$overall[1],cm_rf$overall[1],cm_nb$overall[1],cm_nnet$overall[1], cm_decTree$overall[1]), DataProp = i)
+  
+  modelPerformance <- bind_rows(modelPerformance, tmp)
+
+}
+
+ggplot(modelPerformance, aes(x = DataProp, y = Accuracy, color = model)) + geom_line() + geom_point() + theme_bw() + xlab("Proportion of data used for model training")
+ggsave("figures/supervised-accuracy-trend.png", width = 6, height = 4, dpi = 600)
