@@ -51,5 +51,5 @@ ext <- st_bbox(st_read("downloaded-datasets/Suli/suli.shp"))
 names(ext) <- c("left", "bottom","right","top")
 
 ggmap(get_map(ext, source = "stamen",maptype = "terrain")) + geom_point(data = Suli_points, aes(x = GPSLongitude, y = GPSLatitude, colour = Subject)) 
-
+ggsave("figures/field-sampling.pdf", width = 6, height = 4, dpi = 600)
 

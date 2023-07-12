@@ -120,7 +120,7 @@ cm_nnet
 
 modelPerformance <- data.frame(model = c("SVM", "RF", "NB", "NN","decTree"), Accuracy = c(cm_SVM$overall[1],cm_rf$overall[1],cm_nb$overall[1],cm_nnet$overall[1], cm_decTree$overall[1]))
 
-### test if training data is enough
+### test if training data is enough----
 modelPerformance <- NULL
 
 for(i in seq(0.1,0.99,0.1)){
