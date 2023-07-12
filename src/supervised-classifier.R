@@ -28,6 +28,7 @@ sampdata %<>% mutate(elevation = extract(dem, field_data)[,2], slope = extract(s
 
 # write_rds(sampdata, "intermediate_rds/sampdata.rds")
 sampdata$Subject[sampdata$Subject=="Jiji Grass"] <- "JijiGrass"
+sampdata <- na.omit(sampdata)
 ### using classification tree----------
 cart <- rpart(as.factor(Subject)~., data=sampdata, method = 'class')
 windows()
