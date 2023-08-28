@@ -6,6 +6,7 @@ library(basemaps)
 library(sf)
 library(ggmap)
 library(readxl)
+library(ggsn)
 # parameter setting
 filepath <- "/Volumes/LEOPARDS/SuliHabitat"
 folders<-list.dirs(filepath) %>% as_tibble()%>% filter(str_detect(value,pattern = "-"))
@@ -47,9 +48,11 @@ Suli_points <- bind_rows(Suli_points, snow_rows)
 ## write shapefile
 st_write(st_as_sf(Suli_points[,3:5], coords = c("GPSLongitude", "GPSLatitude"))%>%st_set_crs(4326), "field-data/field-data.shp", append=F)
 # ext <- sf::st_bbox(st_as_sf(Suli_points, coords = c("GPSLongitude", "GPSLatitude"))) %>% sf::st_set_crs(4326)
-ext <- st_bbox(st_read("downloaded-datasets/Suli/suli.shp"))
+ext <- st_bbox(st_read("field-data/field-data.shp"))
 names(ext) <- c("left", "bottom","right","top")
+ext[c(1,2)] <- floor(ext[c(1,2)]*10)/10
+ext[c(3,4)] <- ceiling(ext[c(3,4)]*10)/10
 
-ggmap(get_map(ext, source = "stamen",maptype = "terrain")) + geom_point(data = Suli_points, aes(x = GPSLongitude, y = GPSLatitude, colour = Subject)) 
+my_scalebar <- edit(scalebar)
+ggmap(get_map(ext, source = "stamen",maptype = "terrain")) + geom_point(data = Suli_points, aes(x = GPSLongitude, y = GPSLatitude, colour = Subject), size = 1, alpha = 0.3) + theme(axis.title.x = element_text(size = 12), axis.title.y = element_text(size = 12))+scalebar(x.min = 97.1, x.max = 98.5, y.min = 38.3, y.max = 39,dist = 20, dist_unit = "km",transform = TRUE, model = "WGS84", location = "bottomleft", st.bottom = F, st.size = 2, border.size = 0.3, anchor = c(x = 97.15, y = 38.33))
 ggsave("figures/field-sampling.pdf", width = 6, height = 4, dpi = 600)
-
