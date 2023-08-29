@@ -12,7 +12,7 @@ library(MLmetrics)
 library(nnet)
 library(neuralnet)
 #read data
-field_data <- st_read("external-data/sl_collar_bands_data.shp")
+field_data <- st_read("external-data/avail.pts.RSF_bands_data.shp")
 head(field_data)
 sampdata <- field_data %>% as.data.frame() %>% dplyr::select(-geometry)%>% dplyr::select(B1, B2, B3, B4, B5, B6, B7, B8,B8A, B9, B11, B12)  
 
@@ -30,4 +30,4 @@ sampdata %<>% mutate(elevation = extract(dem, field_data)[,2], slope = extract(s
 ### use ANN to map-------
 model_nnet <- readRDS("intermediate_rds/model_nnet.rds")
 sampdata$Subject <- predict(model_nnet, newdata = sampdata)
-write_rds(sampdata, "external-data/sl_collar_habitat.rds")
+write_rds(sampdata, "external-data/avail.pts.rsf_habitat.rds")
