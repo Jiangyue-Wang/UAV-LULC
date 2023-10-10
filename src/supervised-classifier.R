@@ -12,8 +12,9 @@ library(MLmetrics)
 library(nnet)
 library(neuralnet)
 #read data
-field_data <- st_read("field-data/field-data-bands_1.shp") %>% bind_cols(st_read("field-data/field-data-bands_2.shp")[,1:6])
-head(field_data)
+field_data <- st_read("field-data/field-data-bands_1.shp") %>% bind_cols(st_read("field-data/field-data-bands_2.shp")[,1:6]) %>% st_as_sf()%>%st_set_crs(4326)
+head(field_data) 
+field_xy <- st_coordinates(field_data$geometry...15)
 sampdata <- field_data %>% as.data.frame() %>% dplyr::select(-geometry...8, -geometry...15)%>% dplyr::select(Subject, B1, B2, B3, B4, B5, B6, B7, B8,B8A, B9, B11, B12)  
 
 dem <- rast("downloaded-datasets/DEM/suli_dem.tif")
@@ -24,7 +25,7 @@ TRI <- rast("downloaded-datasets/DEM/suli_TRI.tif")
 
 stream <- st_read("downloaded-datasets/Stream/suli_stream.shp") %>% st_union()
 
-sampdata %<>% mutate(elevation = extract(dem, field_data)[,2], slope = extract(slope, field_data)[,2], aspect = extract(aspect, field_data)[,2], TPI = extract(TPI, field_data)[,2], TRI = extract(TRI, field_data)[,2]) %>% mutate(river_dist = st_distance(field_data, stream))
+sampdata %<>% mutate(elevation = extract(dem, field_xy)[,1], slope = extract(slope, field_xy)[,1], aspect = extract(aspect, field_xy)[,1], TPI = extract(TPI, field_xy)[,1], TRI = extract(TRI, field_xy)[,1]) %>% mutate(river_dist = st_distance(field_data, stream)[,1])
 
 # write_rds(sampdata, "intermediate_rds/sampdata.rds")
 sampdata <- readRDS("intermediate_rds/sampdata.rds")
