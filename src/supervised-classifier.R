@@ -183,3 +183,7 @@ saveRDS(model_nnet, "intermediate_rds/model_nnet.rds")
 
 cm_nnet <- confusionMatrix(data = predict(model_nnet, newdata = sampdata), as.factor(sampdata$Subject))
 cm_nnet
+
+model_rf <- caret::train(Subject ~ ., method = "rf", data = sampdata,  preProcess = c("scale", "center"),trControl= TrainingParameters, na.action = na.omit)
+saveRDS(model_rf, "intermediate_rds/model_rf.rds")
+
