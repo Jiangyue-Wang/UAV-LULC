@@ -12,9 +12,9 @@ library(MLmetrics)
 library(nnet)
 library(neuralnet)
 #read data
-field_data <- st_read("field-data/field-data-bands.shp")
+field_data <- st_read("field-data/field-data-bands_1.shp") %>% bind_cols(st_read("field-data/field-data-bands_2.shp")[,1:6])
 head(field_data)
-sampdata <- field_data %>% as.data.frame() %>% dplyr::select(-geometry)%>% dplyr::select(Subject, B1, B2, B3, B4, B5, B6, B7, B8,B8A, B9, B11, B12)  
+sampdata <- field_data %>% as.data.frame() %>% dplyr::select(-geometry...8, -geometry...15)%>% dplyr::select(Subject, B1, B2, B3, B4, B5, B6, B7, B8,B8A, B9, B11, B12)  
 
 dem <- rast("downloaded-datasets/DEM/suli_dem.tif")
 slope <- rast("downloaded-datasets/DEM/suli_slope.tif")
