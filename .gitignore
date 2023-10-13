@@ -16,3 +16,5 @@ downloaded-datasets/DEM/
 .mxd
 intermediate_rds/suli_cells.rds
 intermediate_rds/suli_prediction.rds
+intermediate_rds/
+maps/Aug_satellite.tif.ovr
